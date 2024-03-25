@@ -3,13 +3,13 @@ export function Tile({ content: Content, flip, state }) {
     case "start":
       return (
         <Back
-          className="inline-block h-8 w-8 bg-blue-300 text-center"
+          className="inline-block h-16 w-[4rem] bg-blue-300 text-center m-4 rounded-md content-center"
           flip={flip}
         />
       );
     case "flipped":
       return (
-        <Front className="inline-block h-8 w-8 bg-green-500">
+        <Front className="inline-block h-16 w-[4rem] bg-[#6467F2]   rounded-md content-center">
           <Content
             style={{
               display: "inline-block",
@@ -41,7 +41,7 @@ export function Tile({ content: Content, flip, state }) {
 function Back({ className, flip }) {
   return (
     <div onClick={flip} className={className}>
-      ?
+      
     </div>
   );
 }
