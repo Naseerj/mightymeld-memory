@@ -16,6 +16,7 @@ export function Tile({ content: Content, flip, state }) {
               width: "100%",
               height: "100%",
               verticalAlign: "top",
+              padding: "4px"
             }}
           />
         </Front>

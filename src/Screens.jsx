@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import confetti from "canvas-confetti";
 import * as icons from "react-icons/gi";
 import { Tile } from "./Tile";
@@ -35,7 +35,18 @@ export function StartScreen({ start }) {
 
 export function PlayScreen({ end }) {
   const [tiles, setTiles] = useState(null);
-  const [tryCount, setTryCount] = useState(0);
+  const [tryCount, setTryCount] = useState(0); 
+  const [predictCount, setPredictCount] = useState(0)
+  const  predictedCount = useRef('')
+  // console.log(KeyboardEvent.)
+
+
+  const predictFunction = (()=>{
+    if (event.keyCode === 13 || event.which === 13 || event.keyCode === 10 || event.which === 10) console.log('Working')
+    const newValue =  predictedCount.current.value
+    setPredictCount(newValue)
+
+  })
 
   const getTiles = (tileCount) => {
     // Throw error if count is not even.
@@ -116,14 +127,18 @@ export function PlayScreen({ end }) {
 
   return (
     <>
-      <div className="text-center w-32 items-center justify-center mx-auto p-6 ">
-      <h2 className="mt-0 justify-center items-center">Tries<div className="bg-[#EEF2FF] w-12 p-2 rounded-md mt-0">{tryCount}</div> </h2>
+      <div className="text-center w-36 items-center justify-center mx-auto p-6 flex justify-between font-semibold ">Tries:
+      <div className="bg-[#EEF2FF] w-12 p-1 rounded-md mt-0">{tryCount}</div> 
       </div>
       <div className="bg-[#EFF1FF] mx-auto  w-[24rem] mt-auto rounded-lg grid-rows-4">
         {getTiles(16).map((tile, i) => (
           <Tile key={i} flip={() => flip(i)} {...tile} />
         ))}
       </div>
+      <div onChange={()=>{
+        console.log('HEYYYY')
+        predictFunction()
+      }} >PredictCount: <input ref={predictedCount} type="text" />{predictCount} </div>
     </>
   );
 }
